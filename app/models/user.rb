@@ -15,6 +15,7 @@ class User < ApplicationRecord
    end
   
    validates :nickname, presence: true
+   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'は英数混合で設定してください'}
    validates :birthday, presence: true
 
 end
