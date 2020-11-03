@@ -4,5 +4,4 @@ class ItemsController < ApplicationController
 
   def destory
   end
-
 end
