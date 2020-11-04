@@ -6,11 +6,10 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
   end
 
   def create
-    Item.create(item_params)
+    
   end
 
   private
