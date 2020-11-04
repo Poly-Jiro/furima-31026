@@ -4,4 +4,12 @@ class ItemsController < ApplicationController
 
   def destory
   end
+
+  def new
+  end
+
+  def create
+    
+  end
+
 end
