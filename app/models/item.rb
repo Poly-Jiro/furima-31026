@@ -32,5 +32,6 @@ class Item < ApplicationRecord
     validates :category_id  
   end
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+    validates :price, format: { with: /\d{3,7}/, message: 'は半角数字で設定してください' }
 
 end
