@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
     
   belongs_to :user
-  belongs_to :image
+  # belongs_to :image テストコードを書くときに重複していたので注意
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :name
     validates :description
     validates :price
-    validates :user
+    # validates :user  rails6からはいらない
     validates :status_id
     validates :fee_id
     validates :source_id

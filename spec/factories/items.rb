@@ -11,5 +11,9 @@ FactoryBot.define do
     schedule_id              { Faker::Number.within(range: 2..4)}
     category_id              { Faker::Number.within(range: 2..12)}
     association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/camera.png'), filename: 'camera.png')
+    end
   end
 end
