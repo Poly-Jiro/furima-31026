@@ -7,7 +7,6 @@ window.addEventListener('load', () => {
   
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
-    console.log(inputValue);
     
     // 販売手数料の計算
     function sale_fee_calc(){
