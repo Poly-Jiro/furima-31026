@@ -130,16 +130,17 @@
    
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
+          <%= image_tag item.image, class: "item-img" if item.image.attached? %>
     
+      <% unless item.record.nil? %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <%# //商品が売れていればsold outを表示しましょう %>
-   
+      <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
