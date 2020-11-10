@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   # belongs_to :image テストコードを書くときに重複していたので注意
   has_one_attached :image
+  has_one :record
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
