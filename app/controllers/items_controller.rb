@@ -7,7 +7,11 @@ class ItemsController < ApplicationController
     @items = Item.order('created_at DESC')
   end
 
-  def destory
+  def destroy
+    item = Item.find(params[:id])
+    if item.destroy
+      redirect_to root_path
+    end
   end
 
   def new
