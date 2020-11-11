@@ -52,4 +52,3 @@ class ItemsController < ApplicationController
     redirect_to action: :index unless user_signed_in? && (current_user.id == @item.user.id)
   end
 end
-destroy
