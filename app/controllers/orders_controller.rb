@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @record_shipping_address = RecordShippingAddress.new(order_params)
     if @record_shipping_address.valid?
       pay_item
+      
       @record_shipping_address.save
       redirect_to root_path
     else

@@ -17,6 +17,9 @@ class RecordShippingAddress
   validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
-    ShippingAddress.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_number: street_number, building_name: building_name, telephone_number: telephone_number)
+     record = Record.create!(user_id: user_id, item_id: item_id)
+     binding.pry
+     ShippingAddress.create!(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_number: street_number, building_name: building_name, telephone_number: telephone_number, record_id: record.id)
+    # ShippingAddress.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_number: street_number, building_name: building_name, telephone_number: telephone_number)
   end
 end
