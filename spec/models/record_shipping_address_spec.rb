@@ -43,9 +43,4 @@ describe RecordShippingAddress do
       @record_shipping_address.valid?
       expect(@record_shipping_address.errors.full_messages).to include("Telephone number is invalid")
     end
-    it '電話番号は11桁内でないと保存できないこと' do
-      @record_shipping_address.telephone_number = 111111111111
-      @record_shipping_address.valid?
-      expect(@record_shipping_address.errors.full_messages).to include("Telephone number is invalid")
-    end
 end

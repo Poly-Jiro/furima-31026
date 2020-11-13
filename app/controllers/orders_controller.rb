@@ -10,24 +10,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-  
-    @record_shipping_address = RecordShippingAddress.new(params[:order_params])
+    @record_shipping_address = RecordShippingAddress.new(order_params)
     if @record_shipping_address.valid?
       @record_shipping_address.save
       redirect_to root_path
     else
       @item = Item.find(params[:item_id]) 
-      # @item = Item.find(:item_id)  
-      # @item = @record_shipping_address.find(params[:item_id])  
-      # @item = @record_shipping_address.find(:item_id)
       render 'index'
     end
   end
   
     private
     def order_params
-      # params.permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: :item_id)
-      params.require(:record_shipping_address).permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+      # params.permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: :item_id)でも大丈夫
+      params.require(:record_shipping_address).permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
     end
 
     def move_to_index
