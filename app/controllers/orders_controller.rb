@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
+  before_action :authenticate_user!, only: :index
 
   def index
     @item = Item.find(params[:item_id])
@@ -24,12 +24,16 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    # params.permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: :item_id)でも大丈夫
+    # form_withでモデルを指定しなければparams.permitでも大丈夫
     params.require(:record_shipping_address).permit(:postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token], price: @item.price)
   end
 
   def move_to_index
-    redirect_to controller: :items, action: :index if user_signed_in? && (current_user.id == @item.user.id)
+    redirect_to root_path and return if @item.record.present?
+    redirect_to root_path if user_signed_in? && (current_user.id == @item.user.id)
+    # redirect_toで処理は止まらないので、returnで止めてやる。条件が当てはまると2回redirect処理が呼ばれエラーとなる。
+    # root_pathの所はcontroller: :items, action: :indexこういう書き方もできる
+
   end
 
   def set_item
