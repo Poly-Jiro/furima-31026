@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     @record_shipping_address = RecordShippingAddress.new(order_params)
     if @record_shipping_address.valid?
       pay_item
-      
+
       @record_shipping_address.save
       redirect_to root_path
     else
@@ -30,10 +30,10 @@ class OrdersController < ApplicationController
 
   def move_to_index
     redirect_to root_path and return if @item.record.present?
+
     redirect_to root_path if user_signed_in? && (current_user.id == @item.user.id)
     # redirect_toで処理は止まらないので、returnで止めてやる。条件が当てはまると2回redirect処理が呼ばれエラーとなる。
     # root_pathの所はcontroller: :items, action: :indexこういう書き方もできる
-
   end
 
   def set_item
@@ -41,11 +41,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] 
     Payjp::Charge.create(
-      amount: order_params[:price],  # 商品の値段
-      card: order_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: order_params[:price],  
+      card: order_params[:token],    
+      currency: 'jpy'                 
     )
   end
 end
