@@ -43,4 +43,9 @@ describe RecordShippingAddress do
       @record_shipping_address.valid?
       expect(@record_shipping_address.errors.full_messages).to include("Telephone number is invalid")
     end
+    it 'トークンが生成されていなければ登録できないこと' do
+      @record_shipping_address.token = nil
+      @record_shipping_address.valid?
+      expect(@record_shipping_address.errors.full_messages).to include("Token can't be blank")
+    end
 end

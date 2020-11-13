@@ -1,6 +1,6 @@
 class RecordShippingAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :token, :postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number
+  attr_accessor :user_id, :item_id, :token, :price, :postal_code, :prefecture, :municipality, :street_number, :building_name, :telephone_number
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -9,6 +9,7 @@ class RecordShippingAddress
     validates :municipality
     validates :street_number
     validates :telephone_number
+    validates :token
   end
 
   validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
