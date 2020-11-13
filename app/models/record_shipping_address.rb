@@ -12,12 +12,11 @@ class RecordShippingAddress
     validates :token
   end
 
-  validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-  validates :telephone_number, format: {with: /\A[0-9]{,11}\z/}
+  validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :telephone_number, format: { with: /\A[0-9]{,11}\z/ }
   validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
 
-  
   def save
-    ShippingAddress.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_number: street_number, building_name: building_name, telephone_number: telephone_number) 
+    ShippingAddress.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, street_number: street_number, building_name: building_name, telephone_number: telephone_number)
   end
 end
