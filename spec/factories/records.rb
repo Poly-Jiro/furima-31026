@@ -1,4 +1,4 @@
-FactoryBot.define do
-  factory :record do
-  end
-end
+# FactoryBot.define do
+#   factory :record do
+#   end
+# end

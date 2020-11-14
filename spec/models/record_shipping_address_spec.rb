@@ -48,4 +48,9 @@ describe RecordShippingAddress do
     @record_shipping_address.valid?
     expect(@record_shipping_address.errors.full_messages).to include("Token can't be blank")
   end
+  it '都道府県が--(1)以外を選択しないと登録できないこと' do
+    @record_shipping_address.prefecture = 1
+    @record_shipping_address.valid?
+    expect(@record_shipping_address.errors.full_messages).to include("Prefecture can't be blank")
+  end
 end
